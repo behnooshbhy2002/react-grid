@@ -112,6 +112,7 @@ function Main() {
                 y: layData.y,
                 minW: layData.minW,
                 minH: layData.minH,
+                static: true,
               }}
               id="container"
               class="highcharts-dashboards-dark "
@@ -140,7 +141,6 @@ function Main() {
       >
         edit
       </button>
-      <button onClick={() => {}}>dark mode</button>
     </div>
   );
 }

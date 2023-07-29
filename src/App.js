@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <Main></Main>
-      <MyChart></MyChart>
+      {/* <MyChart></MyChart> */}
       {/* <Chart></Chart> */}
       {/* <AddRemoveLayout></AddRemoveLayout> */}
     </div>
