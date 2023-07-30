@@ -8,8 +8,7 @@ darkUnica(Highcharts);
 
 const MyChart = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const options = {
+  const [chartOptions, setChartOptions] = useState({
     chart: {
       type: "line",
       renderTo: "container",
@@ -44,49 +43,55 @@ const MyChart = () => {
         data: [1, 3, 2, 4, 5, 3, 4, 2, 5, 6, 4, 3],
       },
     ],
-  };
+  });
 
-  // Toggle between light and dark themes
-  if (isDarkMode) {
-    Highcharts.setOptions({
-      chart: {
-        backgroundColor: "#2a2a2b",
-      },
-      colors: ["#90ee7e", "#f45b5b", "#7798BF", "#aaeeee"],
-      plotOptions: {
-        series: {
-          borderColor: "#303030",
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    if (!isDarkMode) {
+      setChartOptions((prevOptions) => ({
+        ...prevOptions,
+        chart: {
+          ...prevOptions.chart,
+          backgroundColor: "#2a2a2b",
         },
-      },
-    });
-  } else {
-    Highcharts.setOptions({
-      chart: {
-        backgroundColor: "white",
-      },
-      colors: [
-        "#7cb5ec",
-        "#434348",
-        "#90ee7e",
-        "#f7a35c",
-        "#8085e9",
-        "#f15c80",
-        "#e4d354",
-        "#2b908f",
-        "#f45b5b",
-        "#91e8e1",
-      ],
-      plotOptions: {
-        series: {
-          borderColor: "#e6e6e6",
+        colors: ["#90ee7e", "#f45b5b", "#7798BF", "#aaeeee"],
+        plotOptions: {
+          series: {
+            borderColor: "#303030",
+          },
         },
-      },
-    });
-  }
+      }));
+    } else {
+      setChartOptions((prevOptions) => ({
+        ...prevOptions,
+        chart: {
+          ...prevOptions.chart,
+          backgroundColor: "white",
+        },
+        colors: [
+          "#7cb5ec",
+          "#434348",
+          "#90ee7e",
+          "#f7a35c",
+          "#8085e9",
+          "#f15c80",
+          "#e4d354",
+          "#2b908f",
+          "#f45b5b",
+          "#91e8e1",
+        ],
+        plotOptions: {
+          series: {
+            borderColor: "#e6e6e6",
+          },
+        },
+      }));
+    }
+  };
 
   return (
     <div>
-      <button onClick={() => setIsDarkMode(!isDarkMode)}>
+      <button onClick={toggleTheme}>
         {isDarkMode ? "Light Mode" : "Dark Mode"}
       </button>
       {isDarkMode && (
@@ -94,7 +99,7 @@ const MyChart = () => {
           Return to Light Mode
         </button>
       )}
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </div>
   );
 };
