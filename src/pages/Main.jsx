@@ -172,7 +172,7 @@ function Main() {
                 isResizable: false,
               }}
               id="container"
-              class="highcharts-dashboards-dark"
+              class="highcharts-dashboards"
             >
               <HighchartsReact
                 className="responsiveChart"
