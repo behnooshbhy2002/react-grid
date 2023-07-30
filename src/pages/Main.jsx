@@ -18,23 +18,6 @@ function Main() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   // const [editMode, setEditMode] = useState(false);
   const [checked, setChecked] = useState(true);
-  const handleChangeTheme = (event) => {
-    setIsDarkMode(!isDarkMode);
-    setChecked(event.target.checked);
-  };
-
-  const resetLayout = () => {
-    setLayouts({});
-  };
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-  const onLayoutChange = (layout) => {
-    saveToLS("layouts", layout);
-    setLayouts(layout);
-    console.log(layout);
-  };
   const obj = {
     lay: [
       {
@@ -101,6 +84,26 @@ function Main() {
       },
     ],
   };
+  const handleChangeTheme = (event) => {
+    setIsDarkMode(!isDarkMode);
+    setChecked(event.target.checked);
+  };
+
+  const resetLayout = () => {
+    // console.log(layouts);
+    setLayouts([]);
+    // console.log(obj.lay);
+  };
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+  const onLayoutChange = (layout) => {
+    saveToLS("layouts", layout);
+    setLayouts(layout);
+    console.log(layout);
+  };
+
   const [layouts, setLayouts] = useState(obj.lay);
 
   const handleEdit = () => {
