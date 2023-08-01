@@ -9,9 +9,9 @@ import LocalStorageLayout from "./pages/Reset";
 function App() {
   return (
     <div className="App">
-      <LocalStorageLayout></LocalStorageLayout>
+      {/* <LocalStorageLayout></LocalStorageLayout> */}
       {/* <NoDraggingLayout></NoDraggingLayout> */}
-      {/* <Main></Main> */}
+      <Main></Main>
       {/* <MyChart></MyChart> */}
       {/* <Chart></Chart> */}
       {/* <AddRemoveLayout></AddRemoveLayout> */}

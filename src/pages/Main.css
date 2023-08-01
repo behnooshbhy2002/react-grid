@@ -1,6 +1,31 @@
-.edit-button {
-  border: none;
+.left-buttons {
+  display: flex;
+}
+.main-buttons {
+  border-radius: 8px;
+  margin: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-color: rgb(16, 113, 70);
+}
+.dark-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  margin-left: 15px;
+}
+.main-buttons svg {
+  color: rgb(16, 113, 70);
+  height: 1.5rem;
+  width: 1.5rem;
 }
 svg:hover {
   color: red;
+}
+.highcharts-dashboards {
+  margin: 20px;
 }
