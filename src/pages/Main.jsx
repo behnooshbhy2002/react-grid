@@ -9,7 +9,7 @@ import { Switch } from "antd";
 import "./Main.css";
 
 import _ from "lodash";
-const ResponsiveReactGridLayout = WidthProvider(RGL);
+const ReactGridLayout = WidthProvider(RGL);
 
 // Apply the dark theme
 // darkUnica(Highcharts);
@@ -117,6 +117,7 @@ function Main() {
       layouts[k].isResizable = true;
     }
   };
+  const mar = [11, 11];
   return (
     <div>
       {/* <Switch
@@ -175,12 +176,14 @@ function Main() {
         </div>
       </div>
 
-      <ResponsiveReactGridLayout
+      <ReactGridLayout
         className="layout"
         cols={24}
         rowHeight={10}
         layouts={layouts}
         onLayoutChange={onLayoutChange}
+        isBounded={true}
+        margin={mar}
       >
         {layouts.map((layData, key) => {
           console.log(layData);
@@ -214,7 +217,7 @@ function Main() {
             </div>
           );
         })}
-      </ResponsiveReactGridLayout>
+      </ReactGridLayout>
     </div>
   );
 }
