@@ -9,7 +9,18 @@
   align-items: center;
   width: 2.5rem;
   height: 2.5rem;
+  border-style: solid;
   border-color: rgb(16, 113, 70);
+  background-color: white;
+}
+.main-switch {
+  border-radius: 8px;
+  margin: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 .dark-text {
   display: flex;
