@@ -260,11 +260,13 @@ const getOptions = (type, height, data, chosenTheme) => {
     "#f45b5b",
     "#91e8e1",
   ];
+  let textColor = "black";
 
   console.log(chosenTheme);
   if (chosenTheme) {
     backcolor = "#2a2a2b";
     col = ["#90ee7e", "#f45b5b", "#7798BF", "#aaeeee"];
+    textColor = "white";
   } else {
     backcolor = "white";
     col = [
@@ -279,16 +281,14 @@ const getOptions = (type, height, data, chosenTheme) => {
       "#f45b5b",
       "#91e8e1",
     ];
+    textColor = "black";
   }
   return {
     chart: {
       type,
       height: height ? height * 2 * 10 : null,
       backgroundColor: backcolor,
-      spacingBottom: 15,
-      spacingTop: 10,
-      spacingLeft: 10,
-      spacingRight: 10,
+      // styledMode: true,
     },
     plotOptions: {
       series: {
@@ -297,6 +297,10 @@ const getOptions = (type, height, data, chosenTheme) => {
     },
     title: {
       text: _.startCase(`${type} chart`),
+      style: {
+        fontFamily: "monospace",
+        color: textColor,
+      },
     },
     xAxis: {
       categories: [
@@ -313,18 +317,32 @@ const getOptions = (type, height, data, chosenTheme) => {
         "Nov",
         "Dec",
       ],
+      labels: {
+        style: {
+          color: textColor,
+        },
+      },
     },
     yAxis: {
       title: {
         text: "Values",
       },
+      labels: {
+        style: {
+          color: textColor,
+        },
+      },
     },
     series: [
       {
         data: data,
+        colorByPoint: true,
       },
     ],
     colors: col,
+    credits: {
+      enabled: false,
+    },
   };
 };
 
