@@ -29,6 +29,9 @@
   font-size: larger;
   margin-left: 15px;
 }
+.breadcrumb {
+  float: right;
+}
 .main-buttons svg {
   color: rgb(16, 113, 70);
   height: 1.5rem;

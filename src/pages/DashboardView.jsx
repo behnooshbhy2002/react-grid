@@ -7,12 +7,13 @@ import { EditOutlined } from "@ant-design/icons";
 import { FullscreenOutlined } from "@ant-design/icons/lib/icons";
 import { ReloadOutlined } from "@ant-design/icons/lib/icons";
 import { Breadcrumb } from "antd";
+import { useNavigate } from "react-router-dom";
 import "./Main.css";
 
 import _ from "lodash";
 const ReactGridLayout = WidthProvider(RGL);
 
-function Main() {
+export default function DashboardView() {
   const [stat, setStatic] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
   // const [editMode, setEditMode] = useState(false);
@@ -89,15 +90,10 @@ function Main() {
     // setChecked(event.targetchecked);
   };
 
-  const resetLayout = () => {
-    // console.log(layouts);
-    setLayouts([]);
-    // console.log(obj.lay);
-  };
+  //   const resetLayout = () => {
+  //     setLayouts([]);
+  //   };
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
   const onLayoutChange = (layout) => {
     saveToLS("layouts", layout);
     setLayouts(layout);
@@ -105,26 +101,21 @@ function Main() {
   };
 
   const [layouts, setLayouts] = useState(obj.lay);
+  const navigate = useNavigate();
 
   const handleEdit = () => {
-    console.log("changing");
-    setStatic(false);
-    for (let k = 0; k < layouts.length; k++) {
-      layouts[k].static = false;
-      layouts[k].isDraggable = true;
-      layouts[k].isResizable = true;
-    }
+    console.log("changing component to editable page");
+    navigate("/edit");
+    // setStatic(false);
+    // for (let k = 0; k < layouts.length; k++) {
+    //   layouts[k].static = false;
+    //   layouts[k].isDraggable = true;
+    //   layouts[k].isResizable = true;
+    // }
   };
   const mar = [11, 11];
   return (
     <div>
-      {/* <Switch
-        checked={checked}
-        onChange={handleChangeTheme}
-        inputProps={{ "aria-label": "controlled" }}
-        color="secondary"
-      /> */}
-      {/* <button onClick={resetLayout}>Reset Layout</button> */}
       <nav
         style={{
           backgroundColor: "white",
@@ -136,7 +127,10 @@ function Main() {
           <button className="main-buttons">
             <FullscreenOutlined />
           </button>
-          {stat ? (
+          <button onClick={handleEdit} className="main-buttons">
+            <EditOutlined />
+          </button>
+          {/* {stat ? (
             <button onClick={handleEdit} className="main-buttons">
               <EditOutlined />
             </button>
@@ -145,7 +139,7 @@ function Main() {
               <button>Save</button>
               <button>go Back</button>
             </div>
-          )}
+          )} */}
           <button className="main-buttons">
             <ReloadOutlined />
           </button>
@@ -178,7 +172,6 @@ function Main() {
         rowHeight={10}
         layouts={layouts}
         onLayoutChange={onLayoutChange}
-        isBounded={true}
         margin={mar}
       >
         {layouts.map((layData, key) => {
@@ -342,5 +335,3 @@ const getOptions = (type, height, data, chosenTheme) => {
     },
   };
 };
-
-export default Main;
