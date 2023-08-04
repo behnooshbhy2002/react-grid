@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RGL, { WidthProvider, Responsive } from "react-grid-layout";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -17,9 +17,27 @@ const ReactGridLayout = WidthProvider(RGL);
 export default function DashboardView() {
   const [stat, setStatic] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  // const [editMode, setEditMode] = useState(false);
   const [checked, setChecked] = useState(false);
 
+  const [posts, setPosts] = useState([]);
+  const getData = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("http://localhost:3030/obj", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setPosts(result);
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   const obj = {
     lay: [
       {
@@ -115,7 +133,6 @@ export default function DashboardView() {
     //   layouts[k].isResizable = true;
     // }
   };
-  const mar = [11, 11];
   return (
     <div>
       <nav
@@ -168,7 +185,7 @@ export default function DashboardView() {
         />
       </nav>
 
-      <GridLayout obj={obj} Dark={isDarkMode} view={true}></GridLayout>
+      <GridLayout obj={posts} Dark={isDarkMode} view={true}></GridLayout>
       {/* <ReactGridLayout
         className="layout"
         cols={24}
