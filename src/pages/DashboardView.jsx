@@ -8,6 +8,7 @@ import { FullscreenOutlined } from "@ant-design/icons/lib/icons";
 import { ReloadOutlined } from "@ant-design/icons/lib/icons";
 import { Breadcrumb } from "antd";
 import { useNavigate } from "react-router-dom";
+import GridLayout from "./GridLayout";
 import "./Main.css";
 
 import _ from "lodash";
@@ -18,6 +19,7 @@ export default function DashboardView() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   // const [editMode, setEditMode] = useState(false);
   const [checked, setChecked] = useState(false);
+
   const obj = {
     lay: [
       {
@@ -166,7 +168,8 @@ export default function DashboardView() {
         />
       </nav>
 
-      <ReactGridLayout
+      <GridLayout obj={obj} Dark={isDarkMode} view={true}></GridLayout>
+      {/* <ReactGridLayout
         className="layout"
         cols={24}
         rowHeight={10}
@@ -206,7 +209,7 @@ export default function DashboardView() {
             </div>
           );
         })}
-      </ReactGridLayout>
+      </ReactGridLayout> */}
     </div>
   );
 }
