@@ -63,6 +63,7 @@
         "data": [1, 4, 3, 10],
         "type": "column"
       }
-    ]
+    ],
+    "dark": true
   }
 }

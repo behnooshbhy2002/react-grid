@@ -11,9 +11,6 @@ import { useNavigate } from "react-router-dom";
 import GridLayout from "./GridLayout";
 import "./Main.css";
 
-import _ from "lodash";
-const ReactGridLayout = WidthProvider(RGL);
-
 export default function DashboardView() {
   const [stat, setStatic] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -38,100 +35,82 @@ export default function DashboardView() {
   useEffect(() => {
     getData();
   }, []);
-  const obj = {
-    lay: [
-      {
-        w: 12,
-        h: 12,
-        x: 8,
-        y: 0,
-        minW: 2,
-        minH: 3,
-      },
-      {
-        w: 12,
-        h: 12,
-        x: 8,
-        y: 0,
-        minW: 2,
-        minH: 3,
-      },
-      {
-        w: 12,
-        h: 12,
-        x: 8,
-        y: 0,
-        minW: 2,
-        minH: 3,
-      },
-      {
-        w: 12,
-        h: 12,
-        x: 8,
-        y: 0,
-        minW: 2,
-        minH: 3,
-      },
-      {
-        w: 12,
-        h: 12,
-        x: 8,
-        y: 0,
-        minW: 2,
-        minH: 3,
-      },
-    ],
-    content: [
-      {
-        data: [1, 2, 1, 4, 3, 6],
-        type: "bar",
-      },
-      {
-        data: [1, 2, 4, 3],
-        type: "spline",
-      },
-      {
-        data: [1, 2, 6],
-        type: "pie",
-      },
-      {
-        data: [4, 3, 6],
-        type: "area",
-      },
-      {
-        data: [1, 4, 3, 10],
-        type: "column",
-      },
-    ],
-  };
+  // const obj = {
+  //   lay: [
+  //     {
+  //       w: 12,
+  //       h: 12,
+  //       x: 8,
+  //       y: 0,
+  //       minW: 2,
+  //       minH: 3,
+  //     },
+  //     {
+  //       w: 12,
+  //       h: 12,
+  //       x: 8,
+  //       y: 0,
+  //       minW: 2,
+  //       minH: 3,
+  //     },
+  //     {
+  //       w: 12,
+  //       h: 12,
+  //       x: 8,
+  //       y: 0,
+  //       minW: 2,
+  //       minH: 3,
+  //     },
+  //     {
+  //       w: 12,
+  //       h: 12,
+  //       x: 8,
+  //       y: 0,
+  //       minW: 2,
+  //       minH: 3,
+  //     },
+  //     {
+  //       w: 12,
+  //       h: 12,
+  //       x: 8,
+  //       y: 0,
+  //       minW: 2,
+  //       minH: 3,
+  //     },
+  //   ],
+  //   content: [
+  //     {
+  //       data: [1, 2, 1, 4, 3, 6],
+  //       type: "bar",
+  //     },
+  //     {
+  //       data: [1, 2, 4, 3],
+  //       type: "spline",
+  //     },
+  //     {
+  //       data: [1, 2, 6],
+  //       type: "pie",
+  //     },
+  //     {
+  //       data: [4, 3, 6],
+  //       type: "area",
+  //     },
+  //     {
+  //       data: [1, 4, 3, 10],
+  //       type: "column",
+  //     },
+  //   ],
+  // };
   const handleChangeTheme = (event) => {
     setChecked((s) => !s);
     setIsDarkMode(!isDarkMode);
-    // setChecked(event.targetchecked);
   };
 
-  //   const resetLayout = () => {
-  //     setLayouts([]);
-  //   };
-
-  const onLayoutChange = (layout) => {
-    saveToLS("layouts", layout);
-    setLayouts(layout);
-    console.log(layout);
-  };
-
-  const [layouts, setLayouts] = useState(obj.lay);
   const navigate = useNavigate();
 
   const handleEdit = () => {
     console.log("changing component to editable page");
     navigate("/edit");
-    // setStatic(false);
-    // for (let k = 0; k < layouts.length; k++) {
-    //   layouts[k].static = false;
-    //   layouts[k].isDraggable = true;
-    //   layouts[k].isResizable = true;
-    // }
   };
   return (
     <div>
@@ -149,16 +128,6 @@ export default function DashboardView() {
           <button onClick={handleEdit} className="main-buttons">
             <EditOutlined />
           </button>
-          {/* {stat ? (
-            <button onClick={handleEdit} className="main-buttons">
-              <EditOutlined />
-            </button>
-          ) : (
-            <div>
-              <button>Save</button>
-              <button>go Back</button>
-            </div>
-          )} */}
           <button className="main-buttons">
             <ReloadOutlined />
           </button>
@@ -230,128 +199,3 @@ export default function DashboardView() {
     </div>
   );
 }
-
-function getFromLS(key) {
-  let ls = {};
-  if (global.localStorage) {
-    try {
-      ls = JSON.parse(global.localStorage.getItem("rgl-8")) || {};
-    } catch (e) {
-      /*Ignore*/
-    }
-  }
-  return ls[key];
-}
-
-function saveToLS(key, value) {
-  if (global.localStorage) {
-    global.localStorage.setItem(
-      "rgl-8",
-      JSON.stringify({
-        [key]: value,
-      })
-    );
-  }
-}
-
-const getOptions = (type, height, data, chosenTheme) => {
-  // debugger;
-  let backcolor = "white";
-  let col = [
-    "#7cb5ec",
-    "#434348",
-    "#90ee7e",
-    "#f7a35c",
-    "#8085e9",
-    "#f15c80",
-    "#e4d354",
-    "#2b908f",
-    "#f45b5b",
-    "#91e8e1",
-  ];
-  let textColor = "black";
-
-  console.log(chosenTheme);
-  if (chosenTheme) {
-    backcolor = "#2a2a2b";
-    col = ["#90ee7e", "#f45b5b", "#7798BF", "#aaeeee"];
-    textColor = "white";
-  } else {
-    backcolor = "white";
-    col = [
-      "#7cb5ec",
-      "#434348",
-      "#90ee7e",
-      "#f7a35c",
-      "#8085e9",
-      "#f15c80",
-      "#e4d354",
-      "#2b908f",
-      "#f45b5b",
-      "#91e8e1",
-    ];
-    textColor = "black";
-  }
-  return {
-    chart: {
-      type,
-      height: height ? height * 2 * 10 : null,
-      backgroundColor: backcolor,
-      // styledMode: true,
-    },
-    plotOptions: {
-      series: {
-        colorByPoint: true,
-      },
-    },
-    title: {
-      text: _.startCase(`${type} chart`),
-      style: {
-        fontFamily: "monospace",
-        color: textColor,
-      },
-    },
-    xAxis: {
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
-      labels: {
-        style: {
-          color: textColor,
-        },
-      },
-    },
-    yAxis: {
-      title: {
-        text: null,
-      },
-      labels: {
-        style: {
-          color: textColor,
-        },
-      },
-    },
-    series: [
-      {
-        data: data,
-        colorByPoint: true,
-        showInLegend: false,
-      },
-    ],
-    colors: col,
-    credits: {
-      enabled: false,
-    },
-  };
-};

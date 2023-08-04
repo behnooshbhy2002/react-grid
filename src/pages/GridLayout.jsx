@@ -23,9 +23,11 @@ export default function GridLayout(props) {
         onLayoutChange={onLayoutChange}
         margin={mar}
       >
-        {props?.obj?.lay?.map((layData, key) => {
+        {layouts.map((layData, key) => {
           {
-            /* console.log(layData); */
+            /* {
+            console.log(layData);
+          } */
           }
           return (
             <div
