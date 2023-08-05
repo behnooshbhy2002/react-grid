@@ -6,7 +6,7 @@ import { ReloadOutlined } from "@ant-design/icons/lib/icons";
 import { Breadcrumb } from "antd";
 import { useNavigate } from "react-router-dom";
 import GridLayout from "./GridLayout";
-import "./Main.css";
+import "./test/Main.css";
 
 export default function DashboardView() {
   const [isDarkMode, setIsDarkMode] = useState(false);

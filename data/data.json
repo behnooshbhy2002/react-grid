@@ -64,6 +64,6 @@
         "type": "column"
       }
     ],
-    "dark": true
+    "dark": false
   }
 }
