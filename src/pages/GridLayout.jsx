@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RGL, { WidthProvider, Responsive } from "react-grid-layout";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import _ from "lodash";
 const ReactGridLayout = WidthProvider(RGL);
 export default function GridLayout(props) {
-  const [layouts, setLayouts] = useState(props.obj.lay);
+  const [layouts, setLayouts] = useState(props?.obj.lay);
 
   const onLayoutChange = (layout) => {
-    // saveToLS("layouts", layout);
     setLayouts(layout);
     console.log(layout);
   };
+
+  const setupLayout = () => {
+    setLayouts(props?.obj.lay);
+    console.log(props?.obj.lay);
+  };
+  useEffect(() => {
+    setupLayout();
+  }, []);
   const mar = [11, 11];
   return (
     <div>
@@ -23,11 +30,11 @@ export default function GridLayout(props) {
         onLayoutChange={onLayoutChange}
         margin={mar}
       >
-        {layouts.map((layData, key) => {
-          {
-            /* {
-            console.log(layData);
-          } */
+        {props?.obj.lay?.map((layData, key) => {
+          console.log(layData);
+          let h = layData.h;
+          if (layouts) {
+            h = layouts[key].h;
           }
           return (
             <div
@@ -51,7 +58,7 @@ export default function GridLayout(props) {
                 highcharts={Highcharts}
                 options={getOptions(
                   props.obj.content[key].type,
-                  layData.h,
+                  h,
                   props.obj.content[key].data,
                   props.Dark
                 )}
@@ -81,7 +88,7 @@ const getOptions = (type, height, data, chosenTheme) => {
   ];
   let textColor = "black";
 
-  console.log(chosenTheme);
+  // console.log(chosenTheme);
   if (chosenTheme) {
     backcolor = "#2a2a2b";
     col = ["#90ee7e", "#f45b5b", "#7798BF", "#aaeeee"];
