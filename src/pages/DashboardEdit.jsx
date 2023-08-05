@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import GridLayout from "./GridLayout";
 
 export default function DashboardEdit() {
   const [posts, setPosts] = useState([]);
   const [isDarkMode, setIsDarkMode] = useState(false);
-
+  const navigate = useNavigate();
+  const handleReset = () => {
+    navigate("/dashboard");
+  };
   const getData = () => {
     var requestOptions = {
       method: "GET",
@@ -37,7 +41,7 @@ export default function DashboardEdit() {
           <button className="main-buttons">
             <span>ذخیره سازی</span>
           </button>
-          <button className="main-buttons">
+          <button className="main-buttons" onClick={handleReset}>
             <span>بازگشت به عقب</span>
           </button>
         </div>
