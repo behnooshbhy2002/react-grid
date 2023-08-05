@@ -44,6 +44,9 @@ export default function DashboardView() {
     console.log("changing component to editable page");
     navigate("/edit");
   };
+  const reloadPage = () => {
+    window.location.reload();
+  };
   return (
     <div>
       <nav
@@ -60,7 +63,7 @@ export default function DashboardView() {
           <button onClick={handleEdit} className="main-buttons">
             <EditOutlined />
           </button>
-          <button className="main-buttons">
+          <button className="main-buttons" onClick={reloadPage}>
             <ReloadOutlined />
           </button>
           <div className="main-switch">
