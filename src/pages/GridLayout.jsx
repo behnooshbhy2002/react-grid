@@ -120,6 +120,15 @@ const getOptions = (type, height, data, chosenTheme) => {
       series: {
         colorByPoint: true,
       },
+      pie: {
+        allowPointSelect: true,
+        cursor: "pointer",
+        dataLabels: {
+          enabled: true,
+          format: "{point.name}: {y} %",
+        },
+        showInLegend: true,
+      },
     },
     title: {
       text: _.startCase(`${type} chart`),
@@ -161,6 +170,7 @@ const getOptions = (type, height, data, chosenTheme) => {
     },
     series: [
       {
+        innerSize: "75%",
         data: data,
         colorByPoint: true,
         showInLegend: false,
