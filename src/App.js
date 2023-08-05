@@ -1,11 +1,4 @@
 import "./App.css";
-// import { Main } from "./pages/Main";
-import Main from "./pages/Main";
-import Chart from "./pages/Charts";
-import AddRemoveLayout from "./pages/AddRemove";
-import MyChart from "./pages/DarkMode";
-import NoDraggingLayout from "./pages/Notdraggable";
-import LocalStorageLayout from "./pages/Reset";
 import { BrowserRouter, Router, Route, Routes } from "react-router-dom";
 import DashboardView from "./pages/DashboardView";
 import DashboardEdit from "./pages/DashboardEdit";
